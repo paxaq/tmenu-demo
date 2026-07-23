@@ -91,6 +91,22 @@ h1 .hl-teal{color:var(--teal);text-shadow:3px 3px 0 #000,0 0 14px rgba(63,224,20
   font-family:'Press Start 2P',monospace;font-size:10px;color:var(--teal);
   margin-bottom:30px;animation:blink 1.4s steps(2) infinite;
 }
+.whatis{
+  max-width:480px;margin:0 auto 28px;text-align:left;
+  border:3px solid #3a2d60;background:var(--panel);
+  padding:14px 16px;box-shadow:0 5px 0 #14102a;
+}
+.whatis .q{
+  display:block;font-family:'Press Start 2P',monospace;font-size:9px;
+  color:var(--teal);margin-bottom:8px;letter-spacing:.1em;
+  text-shadow:0 0 8px rgba(63,224,207,.5);
+}
+.whatis p{font-size:20px;color:var(--text)}
+.whatis b{color:var(--amber);font-weight:400}
+.whatline{
+  font-size:20px;color:var(--dim);max-width:44ch;margin:0 auto 24px;
+}
+.whatline b{color:var(--cream);font-weight:400}
 .storefront{width:100%;max-width:640px;margin-top:auto}
 
 /* ---------- day timeline ---------- */
@@ -297,6 +313,10 @@ footer .copy{font-size:16px;color:#5c5378}
   <div class="kicker">★ A DAY IN YOUR RESTAURANT ★</div>
   <h1>You opened a restaurant.<br>Now you work <span class="hl-pink">three jobs</span>.</h1>
   <p class="sub">The floor. The kitchen. The books. Scroll through one day — and <b>flip the switch</b> to see what an AI staff takes off your plate.</p>
+  <div class="whatis">
+    <span class="q">WHAT IS T-MENU?</span>
+    <p>A <b>QR ordering + AI menu</b> system for small restaurants. Guests scan a code on the table, order &amp; pay in their own language — orders hit the kitchen, sales tally themselves. <b>No new hardware, works with your POS.</b></p>
+  </div>
   <div class="scroll-cue">▼ START THE DAY ▼</div>
 
   <!-- storefront pixel scene -->
@@ -784,6 +804,7 @@ footer .copy{font-size:16px;color:#5c5378}
     <div class="scoreline"><span>BOOKS&nbsp;&nbsp;· paperwork</span><span class="val"><span class="count" data-to="3" data-prefix="-" data-suffix=" HRS">-0 HRS</span></span></div>
     <div class="scoreline total"><span>YOU&nbsp;&nbsp;&nbsp;&nbsp;· jobs worked</span><span class="val">3 → 1</span></div>
   </div>
+  <p class="whatline"><b>T-Menu</b> is the QR ordering + AI menu platform behind all three switches — translations, clean kitchen tickets and auto-tallied reports in one system.</p>
   <div class="press-start">
     <a class="btn btn-pink" href="https://tmenu.ai" target="_blank" rel="noopener">▶ START FREE TRIAL</a>
   </div>

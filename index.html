@@ -146,6 +146,22 @@ section{padding:64px 20px}
 h2{font-size:clamp(24px,6.5vw,40px);font-weight:800;line-height:1.15;margin-bottom:10px}
 .section-head p{color:var(--text-dim);max-width:38ch;margin:0 auto;font-size:15px}
 
+/* ---------- what is t-menu ---------- */
+.what{background:linear-gradient(180deg,var(--night-2),var(--night-3))}
+.what-grid{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:680px;margin:0 auto}
+.w-card{
+  background:#0d0813;border:2px solid rgba(200,147,90,.45);border-radius:16px;
+  padding:18px 14px;flex:1 1 150px;max-width:210px;text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+.w-card .ico{font-size:30px;display:block;margin-bottom:8px}
+.w-card .t{font-weight:800;font-size:15px;margin-bottom:4px;color:var(--paper)}
+.w-card .d{font-size:12.5px;color:var(--text-dim);line-height:1.45}
+.what .foot{
+  text-align:center;color:var(--text-dim);font-size:13px;margin-top:20px;
+}
+.what .foot b{color:var(--aqua);font-weight:700}
+
 /* ---------- staff roster ---------- */
 .staff-section{
   background:linear-gradient(180deg,var(--night-3),var(--night-2));
@@ -410,7 +426,7 @@ footer .copy{font-size:11px;color:#6d5f7d}
 <section class="hero" id="top">
   <div class="open-sign"><span class="dot"></span><span class="txt">NOW HIRING · AI</span><span class="dot"></span></div>
   <h1>Meet Your Restaurant's <span class="neon-pink">AI Employees</span>. They Work <span class="neon-cyan">24/7</span>.</h1>
-  <p class="sub">A full AI staff for independent restaurants — translating menus, taking orders, snapping photos — for less than one shift's wages.</p>
+  <p class="sub"><b style="color:var(--paper)">T-Menu</b> is the <b style="color:var(--paper)">QR ordering &amp; AI menu platform</b> for independent restaurants. It translates your menu, takes orders and snaps photos — like a full staff, for less than one shift's wages.</p>
   <div class="hero-ctas">
     <a class="btn btn-primary" href="#staff">Meet the Staff</a>
     <a class="btn btn-ghost" href="#how">How It Works</a>
@@ -510,6 +526,33 @@ footer .copy{font-size:11px;color:#6d5f7d}
     <span>EAT</span><span>★</span><span>ORDER</span><span>★</span><span>TRANSLATE</span><span>★</span><span>PAY</span><span>★</span><span>REPEAT</span><span>★</span>
   </div>
 </div>
+
+<!-- ================= WHAT IS T-MENU ================= -->
+<section class="what" id="what">
+  <div class="section-head fade-up">
+    <span class="kicker">What is T-Menu?</span>
+    <h2>Your Menu, Upgraded to a Smart QR Menu</h2>
+    <p>Put a T-Menu QR code on every table — guests scan, browse, order and pay. AI keeps the menu translated, photographed and up to date.</p>
+  </div>
+  <div class="what-grid fade-up">
+    <div class="w-card">
+      <span class="ico">📲</span>
+      <span class="t">Guests Scan &amp; Order</span>
+      <p class="d">Browse in their language, order &amp; pay from their phone — no app needed.</p>
+    </div>
+    <div class="w-card">
+      <span class="ico">🈺</span>
+      <span class="t">AI Runs the Menu</span>
+      <p class="d">Auto-translation, enhanced dish photos, prices &amp; sold-outs updated in one tap.</p>
+    </div>
+    <div class="w-card">
+      <span class="ico">🧾</span>
+      <span class="t">You See Everything</span>
+      <p class="d">Orders flow to the kitchen and your POS; sales tally themselves.</p>
+    </div>
+  </div>
+  <p class="foot fade-up"><b>No new hardware. No POS replacement.</b> Set up in one afternoon — meet the team that makes it happen ↓</p>
+</section>
 
 <!-- ================= STAFF ================= -->
 <section class="staff-section" id="staff">
