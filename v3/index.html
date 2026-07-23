@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<!-- T-Menu Concept C -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>T-Menu — AI Employees for Independent Restaurants (Concept C)</title>
+<meta name="description" content="T-Menu gives every independent restaurant two AI employees — a multilingual front-of-house and an operations manager — that hand you back your hours and your payroll.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#160f1e;
+  --night-2:#1f1530;
+  --night-3:#2a1c3d;
+  --wood:#8a5a35;
+  --wood-light:#c8935a;
+  --wood-dark:#5c3a20;
+  --paper:#f6e7c9;
+  --neon-pink:#ff5da2;
+  --neon-cyan:#4de3d8;
+  --amber:#ffb84d;
+  --aqua:#7ef0e2;
+  --ink:#2b1d12;
+  --text:#f3e9db;
+  --text-dim:#b9a88f;
+  --red:#ff5b4a;
+  --green:#58d858;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Baloo 2',system-ui,sans-serif;
+  background:var(--night);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.55;
+}
+.pixel{font-family:'Press Start 2P',monospace}
+
+/* ---------- petals canvas ---------- */
+#petals{position:fixed;inset:0;pointer-events:none;z-index:50}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;
+  background:linear-gradient(180deg,rgba(22,15,30,.96),rgba(22,15,30,.82));
+  backdrop-filter:blur(8px);
+  border-bottom:2px solid rgba(255,93,162,.25);
+}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo .mark{
+  font-family:'Press Start 2P',monospace;font-size:14px;color:var(--neon-pink);
+  text-shadow:0 0 6px var(--neon-pink),0 0 18px rgba(255,93,162,.6);
+  animation:flicker 6s infinite;
+}
+.logo .tag{font-size:10px;color:var(--neon-cyan);letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.btn{
+  display:inline-block;border:none;cursor:pointer;text-decoration:none;text-align:center;
+  font-family:'Baloo 2',sans-serif;font-weight:800;border-radius:14px;
+  transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;
+}
+.btn:active{transform:translateY(2px) scale(.98)}
+.btn-primary{
+  background:linear-gradient(180deg,#ff7ab5,#ff3d92);color:#fff;
+  padding:10px 20px;font-size:15px;
+  box-shadow:0 4px 0 #b3125e,0 8px 24px rgba(255,61,146,.35);
+}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{
+  background:rgba(77,227,216,.08);color:var(--neon-cyan);
+  padding:10px 20px;font-size:15px;border:2px solid rgba(77,227,216,.5);
+  box-shadow:0 0 14px rgba(77,227,216,.18) inset;
+}
+.header-cta{padding:8px 14px;font-size:13px}
+
+/* ---------- hero (Concept A) ---------- */
+.hero{
+  position:relative;
+  padding:96px 20px 0;
+  min-height:92svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  text-align:center;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% -10%,rgba(255,93,162,.14),transparent 60%),
+    radial-gradient(ellipse 80% 50% at 85% 20%,rgba(77,227,216,.10),transparent 60%),
+    linear-gradient(180deg,var(--night) 0%,var(--night-2) 70%,var(--night-3) 100%);
+}
+.open-sign{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#0d0813;border:3px solid #3a2b52;border-radius:10px;
+  padding:8px 18px;margin-bottom:22px;
+  box-shadow:0 0 0 3px #241a35,0 6px 20px rgba(0,0,0,.5);
+}
+.open-sign .dot{width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink);animation:blink 1.2s steps(2) infinite}
+.open-sign .txt{font-family:'Press Start 2P',monospace;font-size:12px;color:var(--amber);text-shadow:0 0 8px rgba(255,184,77,.8);letter-spacing:.15em}
+h1{
+  font-size:clamp(30px,8.5vw,58px);
+  font-weight:800;line-height:1.12;
+  max-width:16ch;margin:0 auto 14px;
+}
+h1 .neon-pink{color:var(--neon-pink);text-shadow:0 0 10px rgba(255,93,162,.9),0 0 34px rgba(255,93,162,.45)}
+h1 .neon-cyan{color:var(--neon-cyan);text-shadow:0 0 10px rgba(77,227,216,.9),0 0 34px rgba(77,227,216,.45)}
+.hero .sub{
+  color:var(--text-dim);font-size:clamp(15px,4.2vw,19px);
+  max-width:34ch;margin:0 auto 26px;
+}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
+.hero .fine{font-size:12px;color:var(--text-dim);opacity:.8;margin-bottom:28px}
+
+/* sushi bar scene */
+.scene{
+  position:relative;width:100%;max-width:560px;margin-top:auto;
+}
+.scene svg{width:100%;height:auto;display:block}
+.lantern{transform-origin:top center;animation:sway 4.2s ease-in-out infinite}
+.lantern.l2{animation-delay:-1.4s}
+.lantern.l3{animation-delay:-2.6s}
+.steam{animation:steam 3s ease-in-out infinite;opacity:0}
+.steam.s2{animation-delay:1.1s}
+.steam.s3{animation-delay:2s}
+.cat-tail{transform-origin:60% 90%;animation:tail 3s ease-in-out infinite}
+.fish{animation:swim 9s linear infinite}
+.fish.f2{animation-delay:-4.5s;animation-duration:12s}
+
+/* ---------- marquee ---------- */
+.marquee{
+  background:#0d0813;border-top:3px solid var(--wood-dark);border-bottom:3px solid var(--wood-dark);
+  overflow:hidden;padding:12px 0;position:relative;
+}
+.marquee-track{display:flex;gap:48px;width:max-content;animation:scrollx 22s linear infinite}
+.marquee-track span{
+  font-family:'Press Start 2P',monospace;font-size:12px;white-space:nowrap;
+  color:var(--neon-cyan);text-shadow:0 0 8px rgba(77,227,216,.7);
+}
+.marquee-track span:nth-child(even){color:var(--neon-pink);text-shadow:0 0 8px rgba(255,93,162,.7)}
+
+/* ---------- sections ---------- */
+section{padding:64px 20px}
+.section-head{text-align:center;margin-bottom:30px}
+.kicker{
+  font-family:'Press Start 2P',monospace;font-size:10px;letter-spacing:.15em;
+  color:var(--amber);text-shadow:0 0 10px rgba(255,184,77,.5);
+  display:inline-block;margin-bottom:14px;text-transform:uppercase;
+}
+h2{font-size:clamp(24px,6.5vw,40px);font-weight:800;line-height:1.15;margin-bottom:10px}
+.section-head p{color:var(--text-dim);max-width:38ch;margin:0 auto;font-size:15px}
+
+/* ---------- live scenes ---------- */
+.scene-section{background:linear-gradient(180deg,var(--night-3),var(--night-2))}
+.scene-section.alt{background:linear-gradient(180deg,var(--night-2),var(--night-3))}
+.emp-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#0d0813;border:2px solid var(--neon-cyan);border-radius:999px;
+  padding:6px 16px;margin-bottom:14px;
+  font-family:'Press Start 2P',monospace;font-size:9px;color:var(--neon-cyan);
+  text-shadow:0 0 8px rgba(77,227,216,.5);letter-spacing:.08em;
+}
+.emp-badge.pink{border-color:var(--neon-pink);color:var(--neon-pink);text-shadow:0 0 8px rgba(255,93,162,.5)}
+
+.stage-wrap{max-width:860px;margin:0 auto}
+.stage{
+  position:relative;overflow:hidden;
+  aspect-ratio:16/9;
+  border:3px solid var(--wood);border-radius:18px;
+  box-shadow:0 14px 40px rgba(0,0,0,.5),inset 0 0 0 2px rgba(200,147,90,.15);
+  background-size:cover;background-position:center;
+  image-rendering:auto;
+}
+.stage .tint{
+  position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:radial-gradient(ellipse 90% 80% at 50% 30%,transparent 55%,rgba(120,20,30,.38) 100%);
+  opacity:1;transition:opacity .6s ease;
+}
+.scene-on .stage .tint{opacity:0}
+
+/* sprites */
+.sprite{
+  position:absolute;z-index:2;transform-origin:50% 100%;
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,.45));
+  pointer-events:none;
+}
+.sprite img{width:100%;height:auto;display:block}
+
+/* chaos/calm layers inside stage */
+.stage .chaos,.stage .calm{transition:opacity .55s ease}
+.stage .chaos{opacity:1}
+.stage .calm{opacity:0}
+.scene-on .stage .chaos{opacity:0}
+.scene-on .stage .calm{opacity:1}
+
+/* speech bubbles */
+.bub{
+  position:absolute;z-index:4;
+  background:var(--paper);color:var(--red);
+  font-family:'Press Start 2P',monospace;font-size:clamp(8px,1.6vw,12px);
+  padding:.55em .7em;border-radius:8px;
+  box-shadow:0 4px 10px rgba(0,0,0,.4);
+  animation:bob 1s steps(2) infinite;
+  white-space:nowrap;
+}
+.bub::after{
+  content:"";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--paper);
+}
+.bub.b2{animation-delay:.3s}
+.bub.b3{animation-delay:.6s}
+.bub.good{color:#1a7a4e;background:#dff7e8}
+.bub.good::after{border-top-color:#dff7e8}
+
+/* toggle switch (A-styled) */
+.switchrow{display:flex;justify-content:center;margin:24px 0 18px}
+.tswitch{
+  display:flex;align-items:center;gap:14px;cursor:pointer;user-select:none;
+  background:#0d0813;border:2px solid #3a2b52;border-radius:999px;
+  padding:10px 18px;
+  box-shadow:0 6px 18px rgba(0,0,0,.45);
+  transition:transform .12s ease,border-color .3s ease;
+  border:2px solid rgba(255,91,74,.6);
+}
+.tswitch:active{transform:translateY(2px)}
+.tswitch .lbl{font-family:'Press Start 2P',monospace;font-size:9px;letter-spacing:.06em}
+.tswitch .lbl.off{color:var(--red)}
+.tswitch .lbl.on{color:#4b4368}
+.tswitch .track{
+  width:54px;height:28px;border-radius:999px;background:#2a2145;
+  border:2px solid #4b3a78;position:relative;flex:0 0 auto;
+}
+.tswitch .knob{
+  position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;
+  background:var(--red);box-shadow:0 2px 6px rgba(0,0,0,.5);
+  transition:left .22s cubic-bezier(.34,1.56,.64,1),background .22s;
+}
+.scene-on .tswitch{border-color:rgba(88,216,88,.7)}
+.scene-on .tswitch .knob{left:28px;background:var(--green)}
+.scene-on .tswitch .lbl.off{color:#4b4368}
+.scene-on .tswitch .lbl.on{color:var(--green)}
+.tswitch.pulse{animation:switchpulse 1.2s ease-in-out infinite}
+
+/* captions */
+.caption{max-width:600px;margin:0 auto;text-align:center;position:relative;min-height:150px}
+.caption p{
+  position:absolute;inset:0;font-size:16.5px;color:var(--text);
+  transition:opacity .4s ease;padding:0 6px;
+}
+.caption .pain{opacity:1}
+.caption .fix{opacity:0}
+.scene-on .caption .pain{opacity:0}
+.scene-on .caption .fix{opacity:1}
+.caption b{color:var(--amber);font-weight:700}
+.caption .fix b{color:var(--aqua)}
+.statchip{display:flex;justify-content:center;margin-top:2px}
+.statchip span{
+  font-family:'Press Start 2P',monospace;font-size:10px;padding:10px 16px;
+  border:2px solid var(--neon-cyan);border-radius:12px;color:var(--neon-cyan);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .5s .25s,transform .5s .25s;
+  text-shadow:0 0 8px rgba(77,227,216,.5);
+}
+.scene-on .statchip span{opacity:1;transform:none}
+
+/* ---------- payback ---------- */
+.profit{
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 100%,rgba(255,184,77,.10),transparent 60%),
+    var(--night-3);
+}
+.formula{
+  display:flex;align-items:stretch;justify-content:center;gap:10px;
+  flex-wrap:wrap;max-width:560px;margin:0 auto 8px;
+}
+.f-card{
+  background:#0d0813;border:2px solid rgba(200,147,90,.45);border-radius:16px;
+  padding:18px 14px;text-align:center;flex:1 1 130px;min-width:128px;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+.f-card .num{
+  font-family:'Press Start 2P',monospace;font-size:clamp(15px,4.4vw,22px);
+  display:block;margin-bottom:8px;
+}
+.f-card .lbl{font-size:12.5px;color:var(--text-dim);line-height:1.35;display:block}
+.f-card.up .num{color:var(--neon-cyan);text-shadow:0 0 12px rgba(77,227,216,.6)}
+.f-card.down .num{color:var(--neon-pink);text-shadow:0 0 12px rgba(255,93,162,.6)}
+.f-card.gold .num{color:var(--amber);text-shadow:0 0 12px rgba(255,184,77,.6)}
+.f-op{
+  align-self:center;font-family:'Press Start 2P',monospace;font-size:20px;color:var(--wood-light);
+  flex:0 0 auto;
+}
+.profit .foot{text-align:center;color:var(--text-dim);font-size:13px;margin-top:18px}
+
+/* ---------- pricing / cta ---------- */
+.cta-section{
+  background:linear-gradient(180deg,var(--night-2),var(--night));
+  text-align:center;
+}
+.price-board{
+  max-width:420px;margin:0 auto 26px;position:relative;
+  background:linear-gradient(180deg,#3a2b1c,#2b1f13);
+  border:4px solid var(--wood-dark);border-radius:18px;
+  padding:28px 22px 24px;
+  box-shadow:0 12px 34px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,255,255,.06);
+}
+.price-board::before{
+  content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  width:70px;height:16px;border-radius:8px;
+  background:var(--wood-light);border:2px solid var(--wood-dark);
+}
+.price-board .menu-title{
+  font-family:'Press Start 2P',monospace;font-size:11px;color:var(--amber);
+  letter-spacing:.15em;margin-bottom:16px;display:block;
+  text-shadow:0 0 8px rgba(255,184,77,.5);
+}
+.price-line{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:10px 0;border-bottom:2px dotted rgba(246,231,201,.2);
+  font-size:15px;
+}
+.price-line:last-of-type{border-bottom:none}
+.price-line .item{color:var(--paper);font-weight:600;text-align:left}
+.price-line .item small{display:block;font-weight:400;font-size:11.5px;color:var(--text-dim)}
+.price-line .cost{color:var(--neon-cyan);font-weight:800;white-space:nowrap;margin-left:14px}
+.price-line .cost.strike{color:var(--text-dim);text-decoration:line-through;font-weight:600}
+
+/* ---------- footer ---------- */
+footer{
+  background:#0d0813;border-top:3px solid var(--wood-dark);
+  padding:36px 20px 110px;text-align:center;
+}
+footer .logo{justify-content:center;margin-bottom:12px}
+footer .links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+footer .links a{color:var(--text-dim);text-decoration:none;font-size:13px}
+footer .links a:hover{color:var(--neon-cyan)}
+footer .copy{font-size:11px;color:#6d5f7d}
+
+/* sticky mobile CTA */
+.sticky-cta{
+  position:fixed;left:16px;right:16px;bottom:16px;z-index:90;
+  display:flex;transform:translateY(120px);transition:transform .4s ease;
+}
+.sticky-cta.show{transform:none}
+.sticky-cta .btn{flex:1;padding:15px;font-size:16px;border-radius:16px}
+
+/* ---------- reveal util ---------- */
+.fade-up{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.fade-up.reveal{opacity:1;transform:none}
+
+/* ---------- sprite animations ---------- */
+/* server: rushing back & forth (chaos) */
+.spr-server-rush{
+  left:30%;bottom:4%;width:13%;
+  animation:rush 3.2s linear infinite;
+}
+.spr-server-rush img{animation:runbob .24s steps(2) infinite}
+/* server: calm glide (calm) */
+.spr-server-calm{
+  left:40%;bottom:4%;width:13%;
+  animation:strollC 9s ease-in-out infinite;
+}
+.spr-server-calm img{animation:idlebob 1.6s ease-in-out infinite}
+/* customer standing near counter */
+.spr-customer{
+  right:14%;bottom:5%;width:12.5%;
+}
+.spr-customer img{animation:idlebob 2s ease-in-out infinite}
+.spr-customer.fidget img{animation:runbob .3s steps(2) infinite}
+/* chef at the stove */
+.spr-chef{
+  left:7%;bottom:6%;width:14%;
+}
+.spr-chef img{animation:cookshake .3s steps(2) infinite}
+.scene-on .spr-chef img{animation:idlebob 1.8s ease-in-out infinite}
+.scene-on .spr-chef{left:30%;transition:left 1.2s ease}
+
+@keyframes rush{
+  0%{transform:translateX(0) scaleX(1)}
+  46%{transform:translateX(260%) scaleX(1)}
+  50%{transform:translateX(260%) scaleX(-1)}
+  96%{transform:translateX(0) scaleX(-1)}
+  100%{transform:translateX(0) scaleX(1)}
+}
+@keyframes strollC{
+  0%{transform:translateX(0) scaleX(1)}
+  40%{transform:translateX(60%) scaleX(1)}
+  50%{transform:translateX(60%) scaleX(-1)}
+  90%{transform:translateX(0) scaleX(-1)}
+  100%{transform:translateX(0) scaleX(1)}
+}
+@keyframes runbob{0%,49%{transform:translateY(0)}50%,100%{transform:translateY(-3.5%)}}
+@keyframes idlebob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5%)}}
+@keyframes cookshake{0%,49%{transform:translateY(0) rotate(-1.2deg)}50%,100%{transform:translateY(-2%) rotate(1.2deg)}}
+@keyframes bob{0%,49%{transform:translateY(0)}50%,100%{transform:translateY(-4px)}}
+@keyframes switchpulse{0%,100%{box-shadow:0 6px 18px rgba(0,0,0,.45),0 0 0 0 rgba(255,184,77,0)}50%{box-shadow:0 6px 18px rgba(0,0,0,.45),0 0 0 8px rgba(255,184,77,.25)}}
+
+/* ---------- animations (A) ---------- */
+@keyframes flicker{
+  0%,93%,95%,100%{opacity:1}
+  94%{opacity:.4}
+  96%{opacity:.75}
+}
+@keyframes blink{50%{opacity:.15}}
+@keyframes sway{0%,100%{transform:rotate(2.5deg)}50%{transform:rotate(-2.5deg)}}
+@keyframes steam{
+  0%{opacity:0;transform:translateY(6px) scale(.9)}
+  30%{opacity:.7}
+  100%{opacity:0;transform:translateY(-22px) scale(1.25)}
+}
+@keyframes tail{0%,100%{transform:rotate(0deg)}50%{transform:rotate(14deg)}}
+@keyframes swim{
+  0%{transform:translateX(-20px)}
+  49.9%{transform:translateX(100px) scaleX(1)}
+  50%{transform:translateX(100px) scaleX(-1)}
+  99.9%{transform:translateX(-20px) scaleX(-1)}
+  100%{transform:translateX(-20px) scaleX(1)}
+}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ---------- desktop ---------- */
+@media(min-width:768px){
+  header{padding:14px 40px}
+  .header-cta{padding:10px 20px;font-size:14px}
+  section{padding:90px 40px}
+  .caption{min-height:110px}
+  .caption p{font-size:17.5px}
+  .sticky-cta{display:none}
+  footer{padding-bottom:40px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  #petals{display:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="petals"></canvas>
+
+<header>
+  <a class="logo" href="#top">
+    <span class="mark">T-MENU</span>
+    <span class="tag">AI Staff</span>
+  </a>
+  <a class="btn btn-primary header-cta" href="https://tmenu.ai" target="_blank" rel="noopener">Start Free Trial</a>
+</header>
+
+<!-- ================= HERO (Concept A) ================= -->
+<section class="hero" id="top">
+  <div class="open-sign"><span class="dot"></span><span class="txt">NOW HIRING · AI</span><span class="dot"></span></div>
+  <h1>Meet Your Restaurant's <span class="neon-pink">AI Employees</span>. They Work <span class="neon-cyan">24/7</span>.</h1>
+  <p class="sub"><b style="color:var(--paper)">T-Menu</b> gives your restaurant <b style="color:var(--paper)">two AI employees</b> — a multilingual <b style="color:var(--paper)">front-of-house</b> and an <b style="color:var(--paper)">operations manager</b> — on rails you already trust: your QR codes, your POS, your payments.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-primary" href="#floor">Watch Them Work</a>
+    <a class="btn btn-ghost" href="#payback">The Payback</a>
+  </div>
+  <p class="fine">No credit card · Set up in one afternoon</p>
+
+  <div class="scene" aria-hidden="true">
+    <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <rect x="370" y="18" width="160" height="110" rx="8" fill="#123e44" opacity=".85"/>
+        <rect x="370" y="18" width="160" height="110" rx="8" fill="none" stroke="#7ef0e2" stroke-opacity=".5" stroke-width="3"/>
+        <rect x="376" y="24" width="148" height="20" fill="#7ef0e2" opacity=".12"/>
+        <g clip-path="url(#tank)">
+          <g class="fish"><path d="M400 70 q10 -8 22 0 q-10 8 -22 0 z" fill="#ffb84d"/><circle cx="418" cy="68" r="1.6" fill="#160f1e"/></g>
+          <g transform="translate(-10,28)"><g class="fish f2"><path d="M400 70 q9 -7 19 0 q-9 7 -19 0 z" fill="#ff5da2"/><circle cx="415" cy="68" r="1.5" fill="#160f1e"/></g></g>
+        </g>
+        <path d="M385 118 q6 -14 2 -26 M395 118 q-4 -10 0 -20" stroke="#35c9b8" stroke-width="3" fill="none" opacity=".7"/>
+      </g>
+      <g class="lantern" style="transform-box:fill-box">
+        <line x1="70" y1="0" x2="70" y2="26" stroke="#5c3a20" stroke-width="3"/>
+        <ellipse cx="70" cy="52" rx="22" ry="27" fill="#ff6b6b"/>
+        <ellipse cx="70" cy="52" rx="22" ry="27" fill="url(#lg)" opacity=".55"/>
+        <rect x="60" y="22" width="20" height="7" rx="2" fill="#5c3a20"/>
+        <rect x="60" y="76" width="20" height="6" rx="2" fill="#5c3a20"/>
+        <text x="70" y="60" text-anchor="middle" font-size="20" fill="#fff2d9" font-family="sans-serif">麺</text>
+      </g>
+      <g class="lantern l2" style="transform-box:fill-box">
+        <line x1="150" y1="0" x2="150" y2="18" stroke="#5c3a20" stroke-width="3"/>
+        <ellipse cx="150" cy="42" rx="18" ry="22" fill="#ffb84d"/>
+        <rect x="142" y="15" width="16" height="6" rx="2" fill="#5c3a20"/>
+        <rect x="142" y="61" width="16" height="5" rx="2" fill="#5c3a20"/>
+      </g>
+      <g class="lantern l3" style="transform-box:fill-box">
+        <line x1="225" y1="0" x2="225" y2="30" stroke="#5c3a20" stroke-width="3"/>
+        <ellipse cx="225" cy="56" rx="20" ry="25" fill="#ff8fb8"/>
+        <rect x="216" y="27" width="18" height="6" rx="2" fill="#5c3a20"/>
+        <rect x="216" y="78" width="18" height="6" rx="2" fill="#5c3a20"/>
+        <text x="225" y="63" text-anchor="middle" font-size="17" fill="#fff2d9" font-family="sans-serif">酒</text>
+      </g>
+      <defs>
+        <radialGradient id="lg" cx="35%" cy="30%"><stop offset="0%" stop-color="#fff" stop-opacity=".9"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>
+        <clipPath id="tank"><rect x="373" y="21" width="154" height="104" rx="6"/></clipPath>
+      </defs>
+      <rect x="0" y="170" width="560" height="26" rx="4" fill="#c8935a"/>
+      <rect x="0" y="192" width="560" height="14" fill="#8a5a35"/>
+      <rect x="0" y="206" width="560" height="54" fill="#5c3a20"/>
+      <rect x="30" y="206" width="10" height="54" fill="#4a2e18"/>
+      <rect x="180" y="206" width="10" height="54" fill="#4a2e18"/>
+      <rect x="330" y="206" width="10" height="54" fill="#4a2e18"/>
+      <rect x="480" y="206" width="10" height="54" fill="#4a2e18"/>
+      <g>
+        <path class="steam" d="M96 138 q4 -8 0 -14" stroke="#f6e7c9" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path class="steam s2" d="M108 140 q-4 -9 0 -16" stroke="#f6e7c9" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path class="steam s3" d="M120 138 q4 -8 0 -13" stroke="#f6e7c9" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M82 148 a26 20 0 0 0 52 0 z" fill="#f6e7c9"/>
+        <path d="M82 148 a26 8 0 0 1 52 0 a26 8 0 0 1 -52 0" fill="#ff5da2" opacity=".85"/>
+        <rect x="86" y="162" width="44" height="5" rx="2" fill="#d9c6a3"/>
+      </g>
+      <g>
+        <ellipse cx="265" cy="166" rx="34" ry="7" fill="#3fbdb0"/>
+        <rect x="240" y="150" width="18" height="10" rx="3" fill="#f6e7c9"/><rect x="240" y="147" width="18" height="6" rx="3" fill="#ff7a6b"/>
+        <rect x="262" y="150" width="18" height="10" rx="3" fill="#f6e7c9"/><rect x="262" y="147" width="18" height="6" rx="3" fill="#ffb84d"/>
+        <rect x="284" y="150" width="14" height="12" rx="2" fill="#2b7a4b"/><rect x="286" y="146" width="10" height="6" rx="2" fill="#ff5da2"/>
+      </g>
+      <g>
+        <rect x="330" y="132" width="26" height="42" rx="5" fill="#0d0813" stroke="#4de3d8" stroke-width="2"/>
+        <rect x="335" y="140" width="16" height="16" fill="#f6e7c9"/>
+        <rect x="337" y="142" width="4" height="4" fill="#0d0813"/><rect x="345" y="142" width="4" height="4" fill="#0d0813"/>
+        <rect x="337" y="150" width="4" height="4" fill="#0d0813"/><rect x="344" y="149" width="3" height="3" fill="#0d0813"/>
+        <rect x="336" y="160" width="14" height="3" rx="1.5" fill="#4de3d8"/>
+        <rect x="336" y="166" width="9" height="3" rx="1.5" fill="#3a2b52"/>
+      </g>
+      <g>
+        <ellipse cx="470" cy="164" rx="26" ry="13" fill="#241933"/>
+        <circle cx="490" cy="152" r="11" fill="#241933"/>
+        <path d="M483 144 l-3 -8 6 3 z M494 143 l4 -7 2 8 z" fill="#241933"/>
+        <path class="cat-tail" d="M446 162 q-16 -4 -12 -20" stroke="#241933" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle cx="487" cy="151" r="1.5" fill="#ffb84d"/><circle cx="494" cy="151" r="1.5" fill="#ffb84d"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>ORDERS TAKEN</span><span>★</span><span>MENUS BUILT</span><span>★</span><span>PRICES OPTIMIZED</span><span>★</span><span>QUESTIONS ANSWERED</span><span>★</span><span>12 LANGUAGES</span><span>★</span>
+    <span>ORDERS TAKEN</span><span>★</span><span>MENUS BUILT</span><span>★</span><span>PRICES OPTIMIZED</span><span>★</span><span>QUESTIONS ANSWERED</span><span>★</span><span>12 LANGUAGES</span><span>★</span>
+  </div>
+</div>
+
+<!-- ================= SCENE 1 · FRONT OF HOUSE ================= -->
+<section class="scene-section" id="floor">
+  <div class="section-head fade-up">
+    <span class="kicker">Employee #1 · On the floor</span>
+    <h2>The AI Front-of-House</h2>
+    <p>Lunch rush at your café. Flip the switch and watch the room change.</p>
+  </div>
+
+  <div class="stage-wrap fade-up" data-scene>
+    <div class="stage" style="background-image:url('assets/front.jpg')">
+      <div class="tint"></div>
+
+      <!-- chaos layer -->
+      <div class="chaos">
+        <div class="sprite spr-server-rush"><img src="assets/server.png" alt=""></div>
+        <div class="bub" style="left:5%;top:40%">Excuse me!</div>
+        <div class="bub b2" style="left:36%;top:14%">Hello?? Menu?</div>
+        <div class="bub b3" style="right:3%;top:36%">被无视了…</div>
+      </div>
+
+      <!-- calm layer -->
+      <div class="calm">
+        <div class="sprite spr-server-calm"><img src="assets/server.png" alt=""></div>
+        <div class="sprite spr-customer"><img src="assets/customer.png" alt=""></div>
+        <div class="bub good" style="left:14%;top:36%">Ordered ✓</div>
+        <div class="bub good b2" style="right:10%;top:30%">Paid ✓ 谢谢!</div>
+      </div>
+    </div>
+
+    <div class="switchrow">
+      <button class="tswitch pulse" type="button" aria-pressed="false">
+        <span class="lbl off">WITHOUT</span>
+        <span class="track"><span class="knob"></span></span>
+        <span class="lbl on">WITH T-MENU</span>
+      </button>
+    </div>
+
+    <div class="caption">
+      <p class="pain">One server, six tables, three languages. Guests wave, the phone rings, orders get missed — and <b>you're paying overtime for the privilege</b>.</p>
+      <p class="fix">Your <b>AI front-of-house</b> greets every table through the QR code — takes orders, answers "is it spicy?", and collects payment in the guest's own language. <b>Your server just delivers food.</b></p>
+    </div>
+    <div class="statchip"><span>≈25 STAFF-HOURS BACK / WEEK*</span></div>
+  </div>
+</section>
+
+<!-- ================= SCENE 2 · KITCHEN / OPS ================= -->
+<section class="scene-section alt" id="kitchen">
+  <div class="section-head fade-up">
+    <span class="kicker">Employee #2 · In the back</span>
+    <h2>The AI Operations Manager</h2>
+    <p>Same night, behind the pass. Flip the switch again.</p>
+  </div>
+
+  <div class="stage-wrap fade-up" data-scene>
+    <div class="stage" style="background-image:url('assets/kitchen.jpg')">
+      <div class="tint"></div>
+
+      <!-- chaos layer -->
+      <div class="chaos">
+        <div class="bub" style="left:24%;top:6%">No.7 WRONG!</div>
+        <div class="bub b2" style="left:40%;top:30%">再来一单!!</div>
+        <div class="bub b3" style="right:3%;top:12%">1 AM… receipts…</div>
+      </div>
+
+      <!-- calm layer -->
+      <div class="calm">
+        <div class="bub good" style="left:26%;top:9%">Ticket #12 ✓</div>
+        <div class="bub good b2" style="right:4%;top:26%">Books closed 10 PM ✓</div>
+      </div>
+
+      <div class="sprite spr-chef"><img src="assets/chef.png" alt=""></div>
+    </div>
+
+    <div class="switchrow">
+      <button class="tswitch" type="button" aria-pressed="false">
+        <span class="lbl off">WITHOUT</span>
+        <span class="track"><span class="knob"></span></span>
+        <span class="lbl on">WITH T-MENU</span>
+      </button>
+    </div>
+
+    <div class="caption">
+      <p class="pain">Handwritten tickets, shouted mods, a wrong dish on the pass — and after close, <b>you're alone with the calculator until 1 AM</b>.</p>
+      <p class="fix">Your <b>AI operations manager</b> prints every order clean and in firing order, tracks each sale, optimizes prices from real data, and <b>closes the books before you lock the door</b>.</p>
+    </div>
+    <div class="statchip"><span>≈$2,800/MO VS EXTRA HIRE*</span></div>
+  </div>
+</section>
+
+<!-- ================= PAYBACK ================= -->
+<section class="profit" id="payback">
+  <div class="section-head fade-up">
+    <span class="kicker">The Payback</span>
+    <h2>What Two AI Employees Hand Back</h2>
+  </div>
+  <div class="formula fade-up">
+    <div class="f-card up"><span class="num"><span class="count" data-to="25" data-prefix="+" data-suffix="h">+0h</span></span><span class="lbl">staff-hours back<br>every week</span></div>
+    <div class="f-op">+</div>
+    <div class="f-card down"><span class="num">$<span class="count" data-to="2800" data-prefix="" data-suffix="">0</span></span><span class="lbl">saved monthly<br>vs extra hires</span></div>
+    <div class="f-op">=</div>
+    <div class="f-card gold"><span class="num">10PM</span><span class="lbl">you're home,<br>books closed</span></div>
+  </div>
+  <p class="foot fade-up">We don't sell software seats. We sell work — audited, and metered down to the cent. <br>*Illustrative numbers for the demo.</p>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-section">
+  <div class="section-head fade-up">
+    <span class="kicker">Today's Special</span>
+    <h2>The Payroll Menu</h2>
+  </div>
+  <div class="price-board fade-up">
+    <span class="menu-title">— STAFF WAGES —</span>
+    <div class="price-line"><span class="item">Extra server <small>per month, per person</small></span><span class="cost strike">$3,200</span></div>
+    <div class="price-line"><span class="item">Menu translator <small>per language</small></span><span class="cost strike">$500</span></div>
+    <div class="price-line"><span class="item">Bookkeeper <small>per month</small></span><span class="cost strike">$800</span></div>
+    <div class="price-line"><span class="item" style="color:var(--amber)">Two T-Menu AI employees <small>24/7 · metered to the cent</small></span><span class="cost">from $49/mo</span></div>
+  </div>
+  <div class="fade-up">
+    <a class="btn btn-primary" style="padding:15px 34px;font-size:17px" href="https://tmenu.ai" target="_blank" rel="noopener">Start Free Trial</a>
+    <p class="fine" style="margin-top:12px;font-size:12px;color:var(--text-dim)">No credit card required · Cancel anytime</p>
+  </div>
+</section>
+
+<footer>
+  <a class="logo" href="#top">
+    <span class="mark">T-MENU</span>
+    <span class="tag">AI Staff</span>
+  </a>
+  <div class="links">
+    <a href="../">Concept A</a>
+    <a href="../v2/">Concept B</a>
+    <a href="https://tmenu.ai" target="_blank" rel="noopener">tmenu.ai</a>
+    <a href="mailto:hello@tmenu.ai">Contact</a>
+  </div>
+  <p class="copy">© 2026 T-Menu · Internal demo for team discussion — not a public release</p>
+</footer>
+
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn-primary" href="https://tmenu.ai" target="_blank" rel="noopener">Start Free Trial — It's Free</a>
+</div>
+
+<script>
+/* ---------- cherry petals ---------- */
+(function(){
+  const c=document.getElementById('petals');
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const x=c.getContext('2d');
+  let W,H,P=[];
+  function size(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;}
+  size();addEventListener('resize',size);
+  const N=innerWidth<768?14:26;
+  for(let i=0;i<N;i++)P.push(spawn(true));
+  function spawn(anywhere){
+    return{
+      x:Math.random()*W,
+      y:anywhere?Math.random()*H:-20*devicePixelRatio,
+      s:(2.5+Math.random()*3.5)*devicePixelRatio,
+      vy:(0.4+Math.random()*0.7)*devicePixelRatio,
+      vx:(0.15+Math.random()*0.4)*devicePixelRatio,
+      r:Math.random()*Math.PI*2,
+      vr:(Math.random()-0.5)*0.03,
+      o:0.5+Math.random()*0.4,
+      hue:Math.random()<0.8?'#ffb7d5':'#ffe3ee'
+    };
+  }
+  function tick(){
+    x.clearRect(0,0,W,H);
+    for(const p of P){
+      p.y+=p.vy;p.x+=p.vx+Math.sin(p.y/60)*0.4;p.r+=p.vr;
+      if(p.y>H+30||p.x>W+30)Object.assign(p,spawn(false));
+      x.save();x.translate(p.x,p.y);x.rotate(p.r);x.globalAlpha=p.o;
+      x.fillStyle=p.hue;
+      x.beginPath();
+      x.ellipse(0,0,p.s,p.s*0.62,0,0,Math.PI*2);
+      x.fill();x.restore();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* ---------- scene switches ---------- */
+document.querySelectorAll('[data-scene]').forEach(scene=>{
+  const btn=scene.querySelector('.tswitch');
+  btn.addEventListener('click',()=>{
+    const on=scene.classList.toggle('scene-on');
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    btn.classList.remove('pulse');
+  });
+});
+/* pulse hint when a scene first scrolls into view */
+(function(){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      io.unobserve(e.target);
+      const btn=e.target.querySelector('.tswitch');
+      if(!e.target.classList.contains('scene-on'))btn.classList.add('pulse');
+    });
+  },{threshold:0.4});
+  document.querySelectorAll('[data-scene]').forEach(s=>io.observe(s));
+})();
+
+/* ---------- scroll reveal ---------- */
+(function(){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('reveal');io.unobserve(e.target);}
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+})();
+
+/* ---------- animated counters ---------- */
+(function(){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      io.unobserve(e.target);
+      const el=e.target,to=+el.dataset.to,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+      const t0=performance.now(),dur=1300;
+      (function step(t){
+        const k=Math.min(1,(t-t0)/dur),ease=1-Math.pow(1-k,3);
+        el.textContent=pre+Math.round(to*ease).toLocaleString('en-US')+suf;
+        if(k<1)requestAnimationFrame(step);
+      })(t0);
+    });
+  },{threshold:0.6});
+  document.querySelectorAll('.count').forEach(el=>io.observe(el));
+})();
+
+/* ---------- sticky mobile CTA ---------- */
+(function(){
+  const cta=document.getElementById('stickyCta');
+  const hero=document.querySelector('.hero');
+  new IntersectionObserver(es=>{
+    es.forEach(e=>cta.classList.toggle('show',!e.isIntersecting));
+  },{threshold:0.05}).observe(hero);
+})();
+</script>
+</body>
+</html>
