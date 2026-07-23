@@ -111,11 +111,23 @@ h1 .neon-cyan{color:var(--neon-cyan);text-shadow:0 0 10px rgba(77,227,216,.9),0 
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
 .hero .fine{font-size:12px;color:var(--text-dim);opacity:.8;margin-bottom:28px}
 
-/* sushi bar scene */
+/* hero phones scene */
 .scene{
   position:relative;width:100%;max-width:560px;margin-top:auto;
+  padding-bottom:36px;
 }
-.scene svg{width:100%;height:auto;display:block}
+.scene img{
+  width:100%;height:auto;display:block;
+  border-radius:18px;border:3px solid var(--wood);
+  box-shadow:0 14px 40px rgba(0,0,0,.5),0 0 40px rgba(255,93,162,.12);
+}
+.scene-chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.chip{
+  font-family:'Press Start 2P',monospace;font-size:8px;
+  padding:8px 12px;border-radius:10px;letter-spacing:.06em;white-space:nowrap;
+}
+.chip.pink{border:2px solid var(--neon-pink);color:var(--neon-pink);text-shadow:0 0 8px rgba(255,93,162,.5)}
+.chip.cyan{border:2px solid var(--neon-cyan);color:var(--neon-cyan);text-shadow:0 0 8px rgba(77,227,216,.5)}
 .lantern{transform-origin:top center;animation:sway 4.2s ease-in-out infinite}
 .lantern.l2{animation-delay:-1.4s}
 .lantern.l3{animation-delay:-2.6s}
@@ -457,79 +469,11 @@ footer .copy{font-size:11px;color:#6d5f7d}
   <p class="fine">No credit card · Set up in one afternoon</p>
 
   <div class="scene" aria-hidden="true">
-    <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
-      <g>
-        <rect x="370" y="18" width="160" height="110" rx="8" fill="#123e44" opacity=".85"/>
-        <rect x="370" y="18" width="160" height="110" rx="8" fill="none" stroke="#7ef0e2" stroke-opacity=".5" stroke-width="3"/>
-        <rect x="376" y="24" width="148" height="20" fill="#7ef0e2" opacity=".12"/>
-        <g clip-path="url(#tank)">
-          <g class="fish"><path d="M400 70 q10 -8 22 0 q-10 8 -22 0 z" fill="#ffb84d"/><circle cx="418" cy="68" r="1.6" fill="#160f1e"/></g>
-          <g transform="translate(-10,28)"><g class="fish f2"><path d="M400 70 q9 -7 19 0 q-9 7 -19 0 z" fill="#ff5da2"/><circle cx="415" cy="68" r="1.5" fill="#160f1e"/></g></g>
-        </g>
-        <path d="M385 118 q6 -14 2 -26 M395 118 q-4 -10 0 -20" stroke="#35c9b8" stroke-width="3" fill="none" opacity=".7"/>
-      </g>
-      <g class="lantern" style="transform-box:fill-box">
-        <line x1="70" y1="0" x2="70" y2="26" stroke="#5c3a20" stroke-width="3"/>
-        <ellipse cx="70" cy="52" rx="22" ry="27" fill="#ff6b6b"/>
-        <ellipse cx="70" cy="52" rx="22" ry="27" fill="url(#lg)" opacity=".55"/>
-        <rect x="60" y="22" width="20" height="7" rx="2" fill="#5c3a20"/>
-        <rect x="60" y="76" width="20" height="6" rx="2" fill="#5c3a20"/>
-        <text x="70" y="60" text-anchor="middle" font-size="20" fill="#fff2d9" font-family="sans-serif">麺</text>
-      </g>
-      <g class="lantern l2" style="transform-box:fill-box">
-        <line x1="150" y1="0" x2="150" y2="18" stroke="#5c3a20" stroke-width="3"/>
-        <ellipse cx="150" cy="42" rx="18" ry="22" fill="#ffb84d"/>
-        <rect x="142" y="15" width="16" height="6" rx="2" fill="#5c3a20"/>
-        <rect x="142" y="61" width="16" height="5" rx="2" fill="#5c3a20"/>
-      </g>
-      <g class="lantern l3" style="transform-box:fill-box">
-        <line x1="225" y1="0" x2="225" y2="30" stroke="#5c3a20" stroke-width="3"/>
-        <ellipse cx="225" cy="56" rx="20" ry="25" fill="#ff8fb8"/>
-        <rect x="216" y="27" width="18" height="6" rx="2" fill="#5c3a20"/>
-        <rect x="216" y="78" width="18" height="6" rx="2" fill="#5c3a20"/>
-        <text x="225" y="63" text-anchor="middle" font-size="17" fill="#fff2d9" font-family="sans-serif">酒</text>
-      </g>
-      <defs>
-        <radialGradient id="lg" cx="35%" cy="30%"><stop offset="0%" stop-color="#fff" stop-opacity=".9"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>
-        <clipPath id="tank"><rect x="373" y="21" width="154" height="104" rx="6"/></clipPath>
-      </defs>
-      <rect x="0" y="170" width="560" height="26" rx="4" fill="#c8935a"/>
-      <rect x="0" y="192" width="560" height="14" fill="#8a5a35"/>
-      <rect x="0" y="206" width="560" height="54" fill="#5c3a20"/>
-      <rect x="30" y="206" width="10" height="54" fill="#4a2e18"/>
-      <rect x="180" y="206" width="10" height="54" fill="#4a2e18"/>
-      <rect x="330" y="206" width="10" height="54" fill="#4a2e18"/>
-      <rect x="480" y="206" width="10" height="54" fill="#4a2e18"/>
-      <g>
-        <path class="steam" d="M96 138 q4 -8 0 -14" stroke="#f6e7c9" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path class="steam s2" d="M108 140 q-4 -9 0 -16" stroke="#f6e7c9" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path class="steam s3" d="M120 138 q4 -8 0 -13" stroke="#f6e7c9" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M82 148 a26 20 0 0 0 52 0 z" fill="#f6e7c9"/>
-        <path d="M82 148 a26 8 0 0 1 52 0 a26 8 0 0 1 -52 0" fill="#ff5da2" opacity=".85"/>
-        <rect x="86" y="162" width="44" height="5" rx="2" fill="#d9c6a3"/>
-      </g>
-      <g>
-        <ellipse cx="265" cy="166" rx="34" ry="7" fill="#3fbdb0"/>
-        <rect x="240" y="150" width="18" height="10" rx="3" fill="#f6e7c9"/><rect x="240" y="147" width="18" height="6" rx="3" fill="#ff7a6b"/>
-        <rect x="262" y="150" width="18" height="10" rx="3" fill="#f6e7c9"/><rect x="262" y="147" width="18" height="6" rx="3" fill="#ffb84d"/>
-        <rect x="284" y="150" width="14" height="12" rx="2" fill="#2b7a4b"/><rect x="286" y="146" width="10" height="6" rx="2" fill="#ff5da2"/>
-      </g>
-      <g>
-        <rect x="330" y="132" width="26" height="42" rx="5" fill="#0d0813" stroke="#4de3d8" stroke-width="2"/>
-        <rect x="335" y="140" width="16" height="16" fill="#f6e7c9"/>
-        <rect x="337" y="142" width="4" height="4" fill="#0d0813"/><rect x="345" y="142" width="4" height="4" fill="#0d0813"/>
-        <rect x="337" y="150" width="4" height="4" fill="#0d0813"/><rect x="344" y="149" width="3" height="3" fill="#0d0813"/>
-        <rect x="336" y="160" width="14" height="3" rx="1.5" fill="#4de3d8"/>
-        <rect x="336" y="166" width="9" height="3" rx="1.5" fill="#3a2b52"/>
-      </g>
-      <g>
-        <ellipse cx="470" cy="164" rx="26" ry="13" fill="#241933"/>
-        <circle cx="490" cy="152" r="11" fill="#241933"/>
-        <path d="M483 144 l-3 -8 6 3 z M494 143 l4 -7 2 8 z" fill="#241933"/>
-        <path class="cat-tail" d="M446 162 q-16 -4 -12 -20" stroke="#241933" stroke-width="7" fill="none" stroke-linecap="round"/>
-        <circle cx="487" cy="151" r="1.5" fill="#ffb84d"/><circle cx="494" cy="151" r="1.5" fill="#ffb84d"/>
-      </g>
-    </svg>
+    <img src="assets/hero-phones.jpg" alt="">
+    <div class="scene-chips">
+      <span class="chip pink">GUESTS &middot; SCAN, ORDER &amp; PAY</span>
+      <span class="chip cyan">YOU &middot; SET UP, MANAGE, GET PAID</span>
+    </div>
   </div>
 </section>
 
